@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>未命名问卷</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; color:#192326; background:#a9e9df; }
+    .phone { position:relative; min-height:100vh; max-width:430px; margin:auto; overflow:hidden; background:linear-gradient(133deg,#b9f0df 0%,#87ddd4 52%,#d4f7e9 100%); }
+    .phone:before { content:""; position:absolute; inset:95px 0 0; pointer-events:none; background:radial-gradient(circle at 1% 15%,#104e52 0 2px,transparent 3px),radial-gradient(circle at 38% 16%,#123e40 0 2px,transparent 3px),radial-gradient(circle at 53% 29%,#0b3435 0 2px,transparent 3px),radial-gradient(circle at 80% 27%,#0a4f4a 0 2px,transparent 3px),radial-gradient(circle at 3% 67%,#0b5751 0 2px,transparent 3px),radial-gradient(circle at 17% 88%,#0b4d48 0 2px,transparent 3px),radial-gradient(circle at 90% 77%,#f4e7ba 0 2px,transparent 3px); background-size:210px 210px,260px 260px,300px 300px,250px 250px,330px 330px,270px 270px,280px 280px; opacity:.74; }
+    .phone:after { content:""; position:absolute; z-index:0; width:360px; height:720px; right:-174px; top:75px; background:linear-gradient(150deg,transparent 10%,#cffff625 35%,#e9fff972 63%,transparent 83%); transform:rotate(-19deg); }
+    .top { position:relative; z-index:2; height:96px; padding:39px 13px 0; color:#fff; background:#217ccd; display:grid; grid-template-columns:36px 1fr 36px; align-items:center; }
+    .back { width:13px; height:13px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(45deg); }
+    h1 { margin:0; text-align:center; font-size:18px; font-weight:700; }
+    .more { justify-self:end; font-size:23px; font-weight:900; letter-spacing:2px; line-height:.2; }
+    main { position:relative; z-index:1; padding:17px 28px 90px; }
+    .progress-row { display:flex; gap:20px; align-items:center; }
+    .count { color:#152326; font-size:18px; font-weight:700; white-space:nowrap; }
+    .track { position:relative; flex:1; height:6px; border-radius:4px; background:#78bfc1; }
+    .track:before { content:""; position:absolute; width:50%; inset:0 auto 0 0; border-radius:4px; background:#060b0c; }
+    .outline-list { width:45px; height:44px; margin-left:-2px; border-radius:12px; background:#f2fbf9; color:#365157; display:grid; place-items:center; box-shadow:0 2px 5px #3776763d; font-size:23px; }
+    .question { margin:104px 0 11px; font-size:19px; line-height:1.55; font-weight:800; color:#172324; }
+    .answers { overflow:hidden; border-radius:13px; background:#f7fbfbeb; box-shadow:0 3px 9px #37727133; }
+    .answer { position:relative; display:flex; align-items:center; min-height:47px; padding:0 13px; border-bottom:1px solid #d4dddd; color:#3c4649; font-size:17px; cursor:pointer; }
+    .answer:last-child { border-bottom:0; }
+    input { position:absolute; opacity:0; }
+    .radio { width:25px; height:25px; flex:0 0 25px; margin-right:13px; border:2px solid #d2d4d3; border-radius:50%; background:#fff; box-shadow:0 1px 2px #8a969650; }
+    input:checked + .radio { border:7px solid #057e82; }
+    .confirm { width:100%; margin-top:33px; padding:14px; border:0; border-radius:12px; color:#d7f6f5; font:700 16px inherit; background:#008183; box-shadow:0 4px 7px #20676742; cursor:pointer; }
+    .confirm:after { content:"›"; margin-left:11px; font-size:26px; vertical-align:-2px; line-height:10px; }
+    .footer { position:absolute; z-index:2; bottom:37px; width:100%; color:#687f80; text-align:center; font-size:13px; }
+    .toast { position:fixed; z-index:4; left:50%; top:55%; transform:translate(-50%,-50%) scale(.95); width:max-content; max-width:80%; padding:13px 18px; border-radius:12px; color:#fff; background:#142e30e6; opacity:0; transition:.2s; pointer-events:none; }
+    .toast.show { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    @media (min-width:700px) { body { padding:22px 0; background:#e8f6f4; } .phone { min-height:calc(100vh - 44px); border-radius:28px; box-shadow:0 18px 55px #41857a44; } }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header class="top"><a class="back" href="questionnaire-gift.html" aria-label="返回礼品活动"></a><h1>未命名问卷</h1><span class="more">…</span></header>
+    <main>
+      <div class="progress-row"><span class="count">1 / 2</span><i class="track"></i><span class="outline-list">☷</span></div>
+      <form id="survey-form"><p class="question">1. 您对我们的产品质量和服务是否满意？</p><div class="answers">
+        <label class="answer"><input name="satisfaction" value="非常满意" type="radio" required><i class="radio"></i>非常满意</label>
+        <label class="answer"><input name="satisfaction" value="满意" type="radio"><i class="radio"></i>满意</label>
+        <label class="answer"><input name="satisfaction" value="一般" type="radio"><i class="radio"></i>一般</label>
+        <label class="answer"><input name="satisfaction" value="不满意" type="radio"><i class="radio"></i>不满意</label>
+      </div><button class="confirm" type="submit">确定</button></form>
+    </main>
+    <footer class="footer">♣ 金数据提供技术支持&nbsp; | &nbsp;举报</footer>
+  </div><div id="toast" class="toast" role="status">已保存，进入下一题</div>
+  <script>
+    document.getElementById('survey-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      window.location.href = 'questionnaire-gift.html?prize=music';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>活动专区</title>
+  <style>
+    :root { --ink:#1f2e4b; --purple:#9648eb; --blue:#2a72e6; --green:#45c77c; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#edf5ff; color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+    .phone { max-width:430px; min-height:100vh; margin:auto; overflow:hidden; background:linear-gradient(135deg,#f5efff 0%,#e8f5ff 38%,#f8fbff 100%); }
+    .nav { height:92px; padding:42px 20px 0; display:grid; grid-template-columns:44px 1fr 100px; align-items:center; }
+    .back { width:28px; height:28px; border-left:3px solid #28334a; border-bottom:3px solid #28334a; transform:rotate(45deg) scale(.48); transform-origin:center; }
+    .nav h1 { margin:0; text-align:center; font-size:24px; letter-spacing:.03em; color:#202d47; }
+    .menu { justify-self:end; width:94px; height:47px; padding:0 10px; background:#fff; border:1px solid #eef2fa; border-radius:28px; display:flex; align-items:center; justify-content:space-around; box-shadow:0 3px 9px #a5bcda2b; }
+    .dots { font-weight:900; letter-spacing:2px; font-size:19px; color:#171e2c; margin-top:-6px; }
+    .split { height:23px; width:1px; background:#e6e9ef; }
+    .target { position:relative; width:25px; height:25px; border:3px solid #1d2738; border-radius:50%; }
+    .target:after { content:""; position:absolute; width:7px; height:7px; background:#1d2738; border-radius:50%; inset:6px; }
+    main { padding:28px 16px 36px; }
+    .intro { margin:0 0 20px; font-size:25px; font-weight:800; letter-spacing:.02em; }
+    .cards { display:grid; gap:28px; }
+    .card { overflow:hidden; border-radius:20px; background:#fff; box-shadow:0 8px 22px #6b8fc21c; }
+    .card-link { display:block; color:inherit; text-decoration:none; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
+    .card-link:hover { transform:translateY(-3px); box-shadow:0 12px 25px #6b8fc232; }
+    .card-link:focus-visible { outline:3px solid #8e49e9; outline-offset:3px; }
+    .banner { position:relative; height:263px; overflow:hidden; }
+    .status { position:absolute; right:0; top:0; z-index:3; min-width:104px; padding:10px 15px; border-radius:0 0 0 20px; color:#fff; font-size:17px; font-weight:700; background:var(--green); }
+    .status:before { content:"•"; margin-right:6px; font-size:20px; vertical-align:-1px; }
+    .banner-one { background:radial-gradient(circle at 75% 40%,#d4eaff 0 7%,transparent 28%),linear-gradient(145deg,#8db5ff 0%,#c6d3ff 48%,#f8edff 100%); }
+    .badge { position:absolute; z-index:2; left:18px; top:36px; padding:8px 20px; border-radius:22px; color:#fff; background:linear-gradient(90deg,#a047ed,#7033dc); font-size:19px; font-weight:700; box-shadow:inset 0 -2px #6526bf44; }
+    .badge:before { content:"•"; margin-right:8px; color:#ece3ff; }
+    .banner-copy { position:absolute; z-index:2; top:98px; left:23px; color:#fff; font-size:33px; font-weight:900; line-height:1.28; text-shadow:0 3px 4px #4e67b450; }
+    .ground { position:absolute; width:230px; height:15px; bottom:11px; right:28px; border-radius:50%; background:#6073da4d; filter:blur(5px); }
+    .mascot { position:absolute; z-index:2; width:129px; height:160px; right:67px; bottom:15px; border-radius:53% 49% 41% 42%; background:radial-gradient(circle at 33% 26%,#5986ff 0 5%,#1456de 40%,#1238bb 76%); transform:rotate(-5deg); box-shadow:inset -17px -7px 21px #0e2e9d66; }
+    .mascot:before { content:""; position:absolute; left:16px; top:45px; width:27px; height:31px; border-radius:50%; background:#0c1a72; box-shadow:51px -1px #0c1a72; }
+    .mascot:after { content:"● ᴗ ●"; white-space:pre; position:absolute; top:51px; left:18px; color:#fff; font-size:19px; letter-spacing:8px; }
+    .arm { position:absolute; z-index:1; width:67px; height:30px; right:151px; bottom:70px; border-radius:25px; background:#174fd2; transform:rotate(35deg); }
+    .clipboard { position:absolute; z-index:3; right:148px; bottom:55px; width:62px; height:102px; padding:17px 9px; border:4px solid #527fca; border-radius:8px; background:#f9fcff; transform:rotate(-12deg); box-shadow:3px 5px 0 #406ab65c; }
+    .clipboard:before { content:"✓\A ✓\A ✓"; white-space:pre; color:#5f96e4; font-size:19px; line-height:1.45; }
+    .coin { position:absolute; z-index:3; right:24px; bottom:22px; width:82px; height:82px; border:7px solid #ffc52f; border-radius:50%; background:radial-gradient(circle at 40% 30%,#ffe68d,#ffac13 70%); box-shadow:0 0 0 6px #ffe77680, 0 0 24px #fff6ad; color:#fff4ad; font-size:47px; line-height:68px; text-align:center; text-shadow:0 2px #e99a17; }
+    .coin:after { content:"✦"; }
+    .info { padding:14px 16px 20px; }
+    .info h2 { margin:0 0 10px; font-size:22px; line-height:1.3; letter-spacing:.01em; }
+    .info-row { display:flex; align-items:center; gap:10px; color:#a0a4ad; font-size:16px; }
+    .cta { margin-left:auto; border:0; border-radius:22px; padding:9px 17px; color:#fff; background:linear-gradient(120deg,#c66eff,#9343e6); font:700 16px inherit; box-shadow:0 4px 9px #b659e94d; }
+    .banner-two { height:234px; background:linear-gradient(135deg,#b7ceff,#dfe5ff 52%,#91b6fa); }
+    .banner-two .headline { position:absolute; left:18px; top:20px; z-index:2; color:#16389e; font-size:28px; font-weight:900; letter-spacing:.03em; }
+    .banner-two .subhead { position:absolute; left:19px; top:61px; color:#5e79bd; font-size:15px; }
+    .spark { position:absolute; left:236px; top:10px; color:#fff; font-size:35px; opacity:.65; }
+    .gifts { position:absolute; display:flex; align-items:flex-end; gap:21px; left:29px; bottom:13px; }
+    .gift { width:68px; height:70px; border-radius:13px; background:linear-gradient(135deg,#fff,#d4e3ff); box-shadow:0 8px 12px #4967a836; text-align:center; padding-top:41px; color:#6075aa; font-size:10px; font-weight:700; }
+    .gift:nth-child(2) { height:81px; background:linear-gradient(145deg,#121e2d,#a1b5dc); }
+    .gift:nth-child(3) { width:74px; height:58px; background:linear-gradient(145deg,#ff6d68,#b53245); }
+    .tiny-mascot { position:absolute; width:100px; height:109px; right:24px; bottom:11px; border-radius:52% 48% 42% 40%; background:linear-gradient(145deg,#416fff,#143ab7); box-shadow:inset -10px -8px 12px #0a237e77; }
+    .tiny-mascot:after { content:"● ᴗ ●"; position:absolute; top:32px; left:16px; white-space:pre; color:#fff; font-size:15px; letter-spacing:7px; }
+    .ticket { position:absolute; z-index:2; right:38px; bottom:0; width:61px; height:50px; border-radius:13px 13px 4px 4px; background:linear-gradient(90deg,#7b4ae9,#b38bff); }
+    .banner-three { height:247px; background:linear-gradient(135deg,#d5f3ff,#f7fdff 53%,#c1e6ff); }
+    .city { position:absolute; right:2px; bottom:10px; width:57%; height:150px; background:linear-gradient(90deg,transparent 0 5%,#92b2d8 5% 9%,transparent 9% 22%,#729ccf 22% 29%,transparent 29% 37%,#6e9bd1 37% 47%,transparent 47% 60%,#9abce3 60% 72%,transparent 72% 78%,#5d8bc4 78% 91%,transparent 91%); clip-path:polygon(0 100%,0 66%,9% 66%,9% 42%,14% 42%,14% 80%,22% 80%,22% 14%,27% 0,31% 14%,31% 78%,39% 78%,39% 34%,49% 34%,49% 74%,59% 74%,59% 19%,66% 19%,66% 81%,78% 81%,78% 29%,85% 29%,85% 9%,92% 9%,92% 75%,100% 75%,100% 100%); opacity:.84; }
+    .city:after { content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg,transparent 0 9px,#e9f5ff 9px 11px); opacity:.75; }
+    .banner-three .badge { background:#1b6ed9; top:25px; }
+    .big-title { position:absolute; z-index:2; left:24px; top:72px; color:#1970d9; font-weight:900; font-size:39px; letter-spacing:.06em; text-shadow:1px 2px #fff; }
+    .small-slogan { position:absolute; z-index:2; left:58px; top:131px; padding:7px 11px; border-radius:4px; color:#fff; background:#42a5ed; font-size:17px; font-weight:700; }
+    .heart-guy { position:absolute; z-index:3; left:38px; bottom:15px; width:61px; height:74px; border-radius:48% 48% 41% 41%; background:linear-gradient(145deg,#3d78ef,#1547bd); }
+    .heart-guy:after { content:"♥"; position:absolute; left:19px; top:22px; color:#dcf8ff; font-size:30px; }
+    @media (min-width:700px) { body { padding:22px 0; } .phone { min-height:calc(100vh - 44px); border-radius:28px; box-shadow:0 18px 55px #5274a333; } }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header class="nav"><span class="back" aria-label="返回"></span><h1>活动专区</h1><div class="menu"><span class="dots">•••</span><i class="split"></i><i class="target"></i></div></header>
+    <main>
+      <p class="intro">请选择需要参加的活动</p>
+      <section class="cards">
+        <a class="card card-link" href="questionnaire-gift.html" aria-label="查看完成问卷即可领取活动礼品">
+          <div class="banner banner-one"><span class="status">进行中</span><span class="badge">问卷积分活动</span><div class="banner-copy">完成问卷<br>领取活动礼品</div><i class="ground"></i><i class="arm"></i><i class="clipboard"></i><i class="mascot"></i><i class="coin"></i></div>
+          <div class="info"><h2>完成问卷即可领取活动礼品</h2><div class="info-row"><span>活动时间：2026.06.12—2026.07.19</span><button class="cta">线上活动</button></div></div>
+        </a>
+        <article class="card">
+          <div class="banner banner-two"><span class="status">进行中</span><b class="headline">健康上上签活动</b><span class="subhead">解锁你的专属好运</span><span class="spark">✦</span><div class="gifts"><i class="gift">智能耳机</i><i class="gift">潮流摆件</i><i class="gift">运动礼包</i></div><i class="ticket"></i><i class="tiny-mascot"></i></div>
+          <div class="info"><h2>5.11世界防治肥胖日 健康上上签活动</h2><div class="info-row"><span>活动时间：2026.05.11—2026.06.15</span><button class="cta">线上活动</button></div></div>
+        </article>
+        <article class="card">
+          <div class="banner banner-three"><span class="badge">健康减重科普展</span><b class="big-title">不难瘦 才享受</b><span class="small-slogan">开启享瘦新生活</span><i class="heart-guy"></i><i class="city"></i></div>
+          <div class="info"><h2>“不难瘦 才享受” 开启享瘦新生活</h2><div class="info-row"><span>活动时间：2026.04.01—2026.06.30</span><button class="cta">线下活动</button></div></div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
