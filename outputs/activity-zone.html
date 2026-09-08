@@ -10,7 +10,7 @@
     body { margin:0; background:#edf5ff; color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
     .phone { max-width:430px; min-height:100vh; margin:auto; overflow:hidden; background:linear-gradient(135deg,#f5efff 0%,#e8f5ff 38%,#f8fbff 100%); }
     .nav { height:92px; padding:42px 20px 0; display:grid; grid-template-columns:44px 1fr 100px; align-items:center; }
-    .back { width:28px; height:28px; border-left:3px solid #28334a; border-bottom:3px solid #28334a; transform:rotate(45deg) scale(.48); transform-origin:center; }
+    .back { display:block; width:28px; height:28px; border-left:3px solid #28334a; border-bottom:3px solid #28334a; transform:rotate(45deg) scale(.48); transform-origin:center; }
     .nav h1 { margin:0; text-align:center; font-size:24px; letter-spacing:.03em; color:#202d47; }
     .menu { justify-self:end; width:94px; height:47px; padding:0 10px; background:#fff; border:1px solid #eef2fa; border-radius:28px; display:flex; align-items:center; justify-content:space-around; box-shadow:0 3px 9px #a5bcda2b; }
     .dots { font-weight:900; letter-spacing:2px; font-size:19px; color:#171e2c; margin-top:-6px; }
@@ -68,7 +68,7 @@
 </head>
 <body>
   <div class="phone">
-    <header class="nav"><span class="back" aria-label="返回"></span><h1>活动专区</h1><div class="menu"><span class="dots">•••</span><i class="split"></i><i class="target"></i></div></header>
+    <header class="nav"><a class="back" href="../index.html" aria-label="返回活动邀请"></a><h1>活动专区</h1><div class="menu"><span class="dots">•••</span><i class="split"></i><i class="target"></i></div></header>
     <main>
       <p class="intro">请选择需要参加的活动</p>
       <section class="cards">
