@@ -2,11 +2,31 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="0; url=outputs/activity-zone.html" />
-  <title>活动专区</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>活动提醒</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eef2f9; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+    .phone { position:relative; max-width:430px; min-height:100vh; margin:auto; overflow:hidden; background:linear-gradient(155deg,#eaf6ff,#fbfdff 38%,#f7f7ff); }
+    .nav { height:89px; padding:39px 17px 0; display:flex; align-items:center; justify-content:space-between; color:#14243e; }
+    .avatar { width:25px; height:25px; border-radius:50%; background:linear-gradient(135deg,#fece9e,#ee7d5d); box-shadow:0 0 0 3px #fff; }.brand { margin-left:10px; font-size:18px; font-weight:800; flex:1; }.brand small { margin-left:5px; color:#91a0b3; font-size:11px; font-weight:500; }.menu { padding:6px 11px; border-radius:16px; background:#fff; box-shadow:0 2px 7px #b1c3d14d; font-weight:900; letter-spacing:2px; }
+    .welcome { margin:0 16px; padding:15px; border-radius:12px; background:#fff; box-shadow:0 4px 13px #7995b51e; color:#344152; font-size:14px; }.welcome b { display:block; margin-bottom:9px; font-size:16px; }.progress { height:9px; border-radius:6px; background:#d5e3f5; overflow:hidden; }.progress i { display:block; width:66%; height:100%; border-radius:6px; background:linear-gradient(90deg,#8969f5,#3e8af2); }
+    .tasks { padding:18px 16px; }.tasks h2 { margin:0 0 12px; font-size:17px; }.task { display:flex; align-items:center; gap:12px; padding:13px; margin-bottom:11px; border-radius:13px; background:#fff; box-shadow:0 4px 13px #7892b31a; }.task-icon { width:43px; height:43px; display:grid; place-items:center; border-radius:13px; background:#e7f0ff; color:#5c78dc; font-size:22px; }.task b { display:block; color:#2d394b; font-size:15px; }.task span { display:block; margin-top:4px; color:#a0a9b6; font-size:12px; }.pill { margin-left:auto; padding:5px 8px; border-radius:12px; color:#fff; background:#7189e7; font-size:11px; }
+    .bottom { position:absolute; bottom:0; width:100%; height:61px; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #edf0f5; color:#8a98aa; background:#fff; font-size:11px; }.bottom i { display:block; margin:auto auto 3px; text-align:center; font-size:18px; font-style:normal; }
+    .shade { position:absolute; z-index:3; inset:0; background:#10233acc; backdrop-filter:blur(1.5px); }.invite { position:absolute; z-index:4; left:50%; top:50%; width:min(300px,calc(100% - 44px)); padding:15px 11px 11px; overflow:hidden; border-radius:17px; color:#293253; text-decoration:none; background:#fff; transform:translate(-50%,-49%); box-shadow:0 14px 38px #04122675; animation:rise .35s ease-out; }.invite h1 { margin:0 0 10px; color:#6046e8; text-align:center; font-size:18px; letter-spacing:.02em; }
+    .art { position:relative; height:145px; overflow:hidden; border-radius:8px; background:radial-gradient(circle at 77% 20%,#dce9ff 0 13%,transparent 34%),linear-gradient(140deg,#dbe3ff,#eff0ff 55%,#c6d8ff); }.art-copy { position:absolute; top:16px; left:13px; color:#2c287d; font-size:15px; font-weight:900; line-height:1.45; }.art-copy small { display:block; font-size:12px; }.gift { position:absolute; left:44px; bottom:14px; width:58px; height:48px; border-radius:5px; background:linear-gradient(130deg,#fff,#e0b6ff); box-shadow:0 8px 8px #7762b052; }.gift:before { content:""; position:absolute; left:25px; top:0; width:9px; height:48px; background:#ffb529; }.gift:after { content:"🎀"; position:absolute; top:-23px; left:8px; font-size:31px; }
+    .mascot { position:absolute; right:27px; bottom:8px; width:83px; height:107px; border-radius:51% 49% 43% 42%; background:radial-gradient(circle at 32% 24%,#6095ff 0 5%,#205adb 45%,#1635ac 85%); box-shadow:inset -10px -8px 12px #10277962; transform:rotate(-6deg); }.mascot:before { content:"● ᴗ ●"; position:absolute; top:38px; left:13px; color:#fff; white-space:pre; font-size:14px; letter-spacing:6px; }.mascot:after { content:"⚽"; position:absolute; top:4px; left:-17px; font-size:31px; transform:rotate(20deg); }
+    .actions { display:flex; align-items:center; justify-content:space-between; padding:11px 3px 0; }.dismiss { padding:8px 12px; border:1px solid #e2e2e5; border-radius:18px; color:#999; font-size:11px; }.join { padding:9px 17px; border-radius:18px; color:#fff; background:linear-gradient(110deg,#5b40ef,#7c30e9); box-shadow:0 4px 7px #6b3ed555; font-size:12px; font-weight:800; }.hint { position:absolute; z-index:5; top:calc(50% + 176px); width:100%; color:#d6dded; text-align:center; font-size:12px; }
+    @keyframes rise { from { opacity:0; transform:translate(-50%,-43%) scale(.93); } to { opacity:1; transform:translate(-50%,-49%) scale(1); } } @media (min-width:700px) { body { padding:22px 0; } .phone { min-height:calc(100vh - 44px); border-radius:28px; box-shadow:0 18px 55px #5274a333; } }
+  </style>
 </head>
 <body>
-  <p>正在打开活动专区… <a href="outputs/activity-zone.html">点击继续</a></p>
+  <div class="phone">
+    <header class="nav"><i class="avatar"></i><div class="brand">瘦常享瘦 <small>日常任务</small></div><span class="menu">•••</span></header>
+    <section class="welcome"><b>Hi~ 欢迎来到瘦常享瘦</b><div class="progress"><i></i></div></section>
+    <main class="tasks"><h2>每日健康任务</h2><div class="task"><i class="task-icon">☀</i><div><b>完成今日打卡</b><span>坚持记录，养成健康好习惯</span></div><em class="pill">去完成</em></div><div class="task"><i class="task-icon">♡</i><div><b>填写健康问卷</b><span>完成可获得健康积分</span></div><em class="pill">去完成</em></div><div class="task"><i class="task-icon">⌁</i><div><b>阅读健康知识</b><span>每日更新精选内容</span></div><em class="pill">去完成</em></div></main>
+    <footer class="bottom"><span><i>⌂</i>首页</span><span><i>◈</i>任务</span><span><i>◉</i>活动</span><span><i>☷</i>我的</span></footer><div class="shade"></div>
+    <a class="invite" href="outputs/activity-zone.html" aria-label="点击参与活动，进入活动专区"><h1>完成问卷，领取活动礼品</h1><div class="art"><div class="art-copy">填写健康问卷<small>领取专属礼品<br>马上参与</small></div><i class="gift"></i><i class="mascot"></i></div><div class="actions"><span class="dismiss">不感兴趣</span><span class="join">参与活动</span></div></a><p class="hint">点击活动邀请，查看全部活动</p>
+  </div>
 </body>
 </html>
